@@ -1,14 +1,11 @@
 package com.example.androidproje;
 
 import android.content.Intent;
-import android.media.MediaActionSound;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 /**
  * Created by CASPER on 9.05.2017.
@@ -30,6 +27,7 @@ public class Giris extends AppCompatActivity {
         if (a.getText().toString().equals("admin") && b.getText().toString().equals("1234")) {
            Intent intent=new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);
+            //yorum deneme yorumu
         }
         else
         {
