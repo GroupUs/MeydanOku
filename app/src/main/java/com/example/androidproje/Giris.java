@@ -28,6 +28,7 @@ public class Giris extends AppCompatActivity {
            Intent intent=new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);
             //yorum deneme yorumu
+            //yorum1
         }
         else
         {
