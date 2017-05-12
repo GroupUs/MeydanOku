@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.androidproje.Giris"
+    tools:context="com.example.quizapp.MainActivity"
     android:focusableInTouchMode="false"
     >
 
@@ -17,13 +17,13 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/user"
+        android:id="@+id/edittext1"
         android:layout_below="@+id/textView4"
         android:layout_alignParentStart="true" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/pass"
+        android:id="@+id/edittext2"
         android:layout_below="@+id/textView3"
         android:layout_alignParentStart="true" />
     <Button
@@ -32,8 +32,8 @@
         android:text="Giriş Yap"
         android:textSize="40dp"
         android:onClick="Giris1"
-        android:id="@+id/giris"
-        android:layout_below="@+id/pass"
+        android:id="@+id/button"
+        android:layout_below="@+id/edittext2"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -42,15 +42,16 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Kullanıcı Adı"
         android:id="@+id/textView4"
-        android:layout_marginTop="70dp"
+android:layout_marginTop="70dp"
         android:layout_alignParentStart="true" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Şifre"
+
         android:id="@+id/textView3"
-        android:layout_below="@+id/user"
+        android:layout_below="@+id/edittext1"
         android:layout_alignParentStart="true" />
 
 </RelativeLayout>
