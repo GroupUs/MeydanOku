@@ -70,6 +70,7 @@ public class JSONParser {
          }
     // Returning json Object.
          return jsonObj; }
+
          public JSONObject makeHttpRequest(String url, String method, List<NameValuePair> params) {
              // Make HTTP request
              try {
@@ -101,9 +102,13 @@ public class JSONParser {
              try {
                  BufferedReader reader = new BufferedReader(new InputStreamReader( is, "iso-8859-1"), 8);
                  StringBuilder str = new StringBuilder();
-                 String strLine = null; while ((strLine = reader.readLine()) != null)
-                 { str.append(strLine + "\n"); }
-                 is.close(); json = str.toString(); }
+                 String strLine = null;
+                 while ((strLine = reader.readLine()) != null)
+                 {
+                     str.append(strLine + "\n"); }
+                 is.close();
+                 json = str.toString();
+             }
              catch (Exception e) { }
              // now will try to parse the string into JSON object
              try { jsonObj = new JSONObject(json);

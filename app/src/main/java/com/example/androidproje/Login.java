@@ -1,14 +1,14 @@
 package com.example.androidproje;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 /**
  * Created by CASPER on 9.05.2017.
  */
-public class Login extends AppCompatActivity {
+public class Login extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);

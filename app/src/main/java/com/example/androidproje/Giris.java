@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ import java.util.List;
 
 
 
-public class Giris extends AppCompatActivity implements View.OnClickListener {
+public class Giris extends AppCompatActivity {
 
 
     private EditText user, pass;
@@ -45,19 +44,24 @@ public class Giris extends AppCompatActivity implements View.OnClickListener {
         user = (EditText)findViewById(R.id.user);
         pass = (EditText)findViewById(R.id.pass);
         bLogin = (Button)findViewById(R.id.giris);
-        bLogin.setOnClickListener(this);
+
     }
-    @Override
-    public void onClick(View v) {
+
+    public void Giris1(View v) {
 
          switch (v.getId()) {
         case R.id.giris:
-            new AttemptLogin().execute();
+
+            String Username = user.getText().toString();
+            String Password = pass.getText().toString();
+            new AttemptLogin().execute(Username,Password);
             // here we have used, switch case, because on login activity you may
             // also want to show registration button, so if the user is new ! we can go the
             // registration activity , other than this we could also do this without switch
             // case.
                 default: break;
+
+
          }
     }
     class AttemptLogin extends AsyncTask<String, String, String> {
@@ -76,38 +80,45 @@ public class Giris extends AppCompatActivity implements View.OnClickListener {
         protected String doInBackground(String... args) {
             // here Check for success tag int success;
 
-            int success;
-            String username = user.getText().toString();
-            String password = pass.getText().toString();
+            boolean success;
+            String username=args[0];
+            String password=args[1];
 
             try {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("username", username));
                 params.add(new BasicNameValuePair("password", password));
                 Log.d("request!", "starting");
-                JSONObject json = jsonParser.makeHttpRequest(LOGIN_URL, "POST", params);
 
-                // checking log for json response
-               Log.d("Login attempt", json.toString());
-                // success tag for json
-                success = json.getInt(TAG_SUCCESS);
-                if (success == 1) {
+                    JSONObject json = jsonParser.makeHttpRequest(LOGIN_URL, "POST", params);
+
+                    // checking log for json response
+                    Log.d("Login attempt", json.toString());
+                    // success tag for json
+                    success = json.getBoolean(TAG_SUCCESS);
+                    //
+
+                if (success == true) {
                     Log.d("Successfully Login!", json.toString());
-                    Intent ii = new Intent(getApplicationContext(),MainActivity.class);
+                    //       Toast.makeText(getApplication(),"success",Toast.LENGTH_LONG).show();
+                    Intent ii = new Intent(getApplicationContext(), MainActivity.class);
                     finish();
                     // this finish() method is used to tell android os that we are done with current
                     // activity now! Moving to other activity
                     startActivity(ii);
                     return json.getString(TAG_MESSAGE);
-                } else{
-                    return json.getString(TAG_MESSAGE); }
-            } catch (JSONException e) {
-                e.printStackTrace();
+                }else {
+                    Toast.makeText(getApplication(),"Kullanıcı adı ya da şifre yanlış",Toast.LENGTH_LONG).show();
+                    return json.getString(TAG_MESSAGE);
+                }
+            }catch (Exception e){
+             Toast.makeText(getApplication(),"Connection failed",Toast.LENGTH_LONG).show();
             }
             return null;
         }
         /** * Once the background process is done we need to Dismiss the progress dialog asap * **/
-        protected void onPostExecute(String message) { pDialog.dismiss();
+        protected void onPostExecute(String message) {
+            pDialog.dismiss();
             if (message != null){
                 Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
             }

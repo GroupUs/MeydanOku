@@ -1,15 +1,15 @@
 package com.example.androidproje;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
 /**
  * Created by CASPER on 9.05.2017.
  */
-public class Kategori extends AppCompatActivity {
+public class Kategori extends Activity {
     TextView oyunmodu;
 
     protected void onCreate(Bundle savedInstanceState) {
