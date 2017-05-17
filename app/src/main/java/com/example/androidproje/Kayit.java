@@ -9,17 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,14 +40,11 @@ public class Kayit extends Activity {
         setContentView(R.layout.kayitol_layout);
         user = (android.widget.EditText)findViewById(R.id.username);
         pass = (EditText)findViewById(R.id.password);
-        bLogin = (Button)findViewById(R.id.giris);
+        bLogin = (Button)findViewById(R.id.kayitol);
 
     }
 
     public void KayıtOl(View v) {
-
-        switch (v.getId()) {
-            case R.id.giris:
 
                 String Username = user.getText().toString();
                 String Password = pass.getText().toString();
@@ -64,10 +54,10 @@ public class Kayit extends Activity {
                 // also want to show registration button, so if the user is new ! we can go the
                 // registration activity , other than this we could also do this without switch
                 // case.
-            default: break;
 
 
-        }
+
+
     }
 
 
@@ -91,7 +81,7 @@ public class Kayit extends Activity {
         protected String doInBackground(String... args) {
             // here Check for success tag int success;
 
-            boolean success;
+            boolean success = false;
             String username = args[0];
             String password = args[1];
 
@@ -102,43 +92,31 @@ public class Kayit extends Activity {
 
 
             try {
-                HttpClient httpClient = new DefaultHttpClient();
+                JSONObject json = jsonParser.makeHttpRequest(REGISTER_URL, "POST", params);
+                success=json.getBoolean("success");
 
-                HttpPost httpPost = new HttpPost(REGISTER_URL);
-
-                httpPost.setEntity(new UrlEncodedFormEntity(params));
-
-                HttpResponse response = httpClient.execute(httpPost);
-
-                HttpEntity entity = response.getEntity();
-
-
-            } catch (ClientProtocolException e) {
-
-            } catch (IOException e) {
-
+            }catch (Exception e){
+                    return "something wrong";
             }
-            return "Data Submit Successfully";
+            if(success==true){
+                return "Kayıt oldunuz";
+            }else return "Kullanıcı adı daha önce alınmış";
+
         }
 
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             pDialog.dismiss();
-            Toast.makeText(getApplicationContext(), "Data Submit Successfully", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
 
 
         }
     }
 
-
-
-
-
-
         /** * Once the background process is done we need to Dismiss the progress dialog asap * **/
         protected void onPostExecute(String message) {
-            Toast.makeText(getApplicationContext(), "tamam.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 
             pDialog.dismiss();
             if (message != null){

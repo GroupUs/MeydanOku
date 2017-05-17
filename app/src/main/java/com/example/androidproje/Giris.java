@@ -22,9 +22,6 @@ import java.util.List;
  * Created by CASPER on 9.05.2017.
  */
 
-
-
-
 public class Giris extends AppCompatActivity {
 
 
@@ -49,9 +46,6 @@ public class Giris extends AppCompatActivity {
 
     public void Giris1(View v) {
 
-         switch (v.getId()) {
-        case R.id.giris:
-
             String Username = user.getText().toString();
             String Password = pass.getText().toString();
             new AttemptLogin().execute(Username,Password);
@@ -59,11 +53,9 @@ public class Giris extends AppCompatActivity {
             // also want to show registration button, so if the user is new ! we can go the
             // registration activity , other than this we could also do this without switch
             // case.
-                default: break;
-
 
          }
-    }
+
     class AttemptLogin extends AsyncTask<String, String, String> {
         /** * Before starting background thread Show Progress Dialog * */
         boolean failure = false;
@@ -108,11 +100,12 @@ public class Giris extends AppCompatActivity {
                     startActivity(ii);
                     return json.getString(TAG_MESSAGE);
                 }else {
-                    Toast.makeText(getApplication(),"Kullanıcı adı ya da şifre yanlış",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Kullanıcı adı ya da şifre yanlış",Toast.LENGTH_LONG).show();
                     return json.getString(TAG_MESSAGE);
                 }
             }catch (Exception e){
-             Toast.makeText(getApplication(),"Connection failed",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Connection failed",Toast.LENGTH_LONG).show();
+               e.printStackTrace();
             }
             return null;
         }
