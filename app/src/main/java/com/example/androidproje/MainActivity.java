@@ -15,13 +15,17 @@ public class MainActivity extends Activity {
             setContentView(R.layout.activity_main);
 
 
+
         }
 
 public void Tiklandi2(View v)
 {
     if(v.getId()==R.id.yenioyunbtn){
+        String username=this.getIntent().getExtras().getString("username");
         Intent intent=new Intent(getApplicationContext(), Kategori.class);
+        intent.putExtra("username",username);
         startActivity(intent);
+
 
     }
 

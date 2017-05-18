@@ -1,10 +1,14 @@
 package com.example.androidproje;
 
-import android.app.Activity;
+
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,9 +24,9 @@ import java.util.List;
 /**
  * Created by CASPER on 9.05.2017.
  */
-public class Kayit extends Activity {
+public class Kayit extends Fragment {
     private EditText user, pass;
-    private Button bLogin;
+    private Button bKayit;
     // Progress Dialog
     private ProgressDialog pDialog;
     // JSON parser class
@@ -30,21 +34,34 @@ public class Kayit extends Activity {
     InputStream is;
     String line=null;
     String result=null;
-    Boolean response;
+
     private static final String REGISTER_URL = "http://challangerace.000webhostapp.com/Register.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.kayitol_layout);
-        user = (android.widget.EditText)findViewById(R.id.username);
-        pass = (EditText)findViewById(R.id.password);
-        bLogin = (Button)findViewById(R.id.kayitol);
 
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        View view= inflater.inflate(R.layout.kayitol_layout,container,false);
+        user = (android.widget.EditText)view.findViewById(R.id.username);
+        pass = (EditText)view.findViewById(R.id.password);
+        bKayit = (Button)view.findViewById(R.id.kayitol);
+
+        bKayit.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                String Username = user.getText().toString();
+                String Password = pass.getText().toString();
+                new AttemptLogin().execute(Username,Password);
+            }
+        });
+        return view;
     }
 
-    public void KayıtOl(View v) {
+   /* public void KayıtOl(View v) {
 
                 String Username = user.getText().toString();
                 String Password = pass.getText().toString();
@@ -56,9 +73,7 @@ public class Kayit extends Activity {
                 // case.
 
 
-
-
-    }
+    }*/
 
 
     class AttemptLogin extends AsyncTask<String, String, String> {
@@ -70,7 +85,7 @@ public class Kayit extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(Kayit.this);
+            pDialog = new ProgressDialog(getActivity());
             pDialog.setMessage("Attempting for register...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
@@ -85,7 +100,7 @@ public class Kayit extends Activity {
             String username = args[0];
             String password = args[1];
 
-            response = false;
+
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("username", username));
             params.add(new BasicNameValuePair("password", password));
@@ -108,7 +123,7 @@ public class Kayit extends Activity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             pDialog.dismiss();
-            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
 
 
         }
@@ -116,11 +131,11 @@ public class Kayit extends Activity {
 
         /** * Once the background process is done we need to Dismiss the progress dialog asap * **/
         protected void onPostExecute(String message) {
-            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
 
             pDialog.dismiss();
             if (message != null){
-                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
             }
         }
 

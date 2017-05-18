@@ -1,7 +1,6 @@
 package com.example.androidproje;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -13,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,6 +35,7 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
     final int MULTIPLE_CHOICE_COUNT = 5;
     private static final String ISLEMTEST_URL = "http://challangerace.000webhostapp.com/islem3.php";
 
+
     TextView question, point, time,finish;
     ListView listItems;
     LinearLayout finish_test_layout;
@@ -55,6 +54,10 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
     private int count=0;
     private float totalPoint=0;
     private String currentWord = "";
+    private int score=0;
+
+    String getUsername="";
+    private HashMap<String ,String>Test;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +72,10 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
         listItems.setOnItemClickListener(this);
 
         formList = new HashMap<>();
+        Test= new HashMap<>();
+
         setQuestions();
-        Bundle bundle = getIntent().getExtras();
+
 
 
         definitions = new ArrayList<>();
@@ -79,7 +84,7 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
 
 
         //definitions = new ArrayList<>();
-
+        getUsername=this.getIntent().getExtras().getString("username");
         Test();
 
 
@@ -100,13 +105,27 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
             @Override
             public void onFinish() {
                 time.setVisibility(View.INVISIBLE);
+
+                SaveTest saveTest= new SaveTest(Test,getUsername);
+                saveTest.Kaydet();
+
                 finish_test_layout =(LinearLayout) findViewById(R.id.finish_test_layout);
                 setContentView(R.layout.finish_test_layout);
                 mBounceAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.bounce_animation);
                 finish=(TextView)findViewById(R.id.finish);
                 finish.setText("Oyun Bitti");
                 finish.startAnimation(mBounceAnimation);
+             //   Intent inten= new Intent(getApplicationContext(),Score.class);
+             //   inten.putExtra("score",score);
+
+
+
+                ///veritabanına sorular eklencek
+
+                //
+              //  inten.putExtra("test",Test);
             }
+
 
         }.start();
     }
@@ -135,6 +154,7 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
 
         @Override
         protected void onPreExecute() {
+
             json_url = "http://challangerace.000webhostapp.com/islem3.php";
         }
 
@@ -189,21 +209,18 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
         }
 
 
-
-
     }
     private void generateRandom() {
-
 
         //shuffle array pick one
         Collections.shuffle(items);
         String word = items.get(0);
 
-
         question.setText(word);
         currentWord = word;
 
         definitions.clear();
+
         int number = -1;
 
         for (int x = 0; x < array.size(); x++) {
@@ -213,6 +230,8 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
             }
         }
         definitions.add(formList.get(word));
+
+        Test.put(word,formList.get(word));
 
         for (int i = 0; i < MULTIPLE_CHOICE_COUNT - 1; i++) {
             if (number == i) {
@@ -228,7 +247,7 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
                 R.id.content,
                 definitions
         );
-
+        Test.put(word,formList.get(word));
         listItems.setAdapter(adapter);
         items.remove(word);
 
@@ -240,21 +259,24 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
         //array.remove(index);
         //   adapter.notifyDataSetChanged();
         count++;
+
         if (formList.get(currentWord).equals(listItems.getItemAtPosition(index).toString())) {
-            point.setTextColor(Color.GREEN);
+            score++;
+          /*  point.setTextColor(Color.GREEN);
             point.setText("+1");
-            point.animate().translationX(400).withLayer();
-            totalPoint=totalPoint+1;
+            point.animate().translationX(400).withLayer();*/
+
+            //totalPoint=totalPoint+1;
 
         } else {
-            totalPoint = (float) (totalPoint-0.5);
+        /*    totalPoint = (float) (totalPoint-0.5);
             point.setTextColor(Color.RED);
             point.setText("-0.5");
-            point.animate().translationX(-400).withLayer();
+            point.animate().translationX(-400).withLayer();*/
         }
 
         generateRandom();
-        if(count==5) {
+     /*   if(count==5) {
             items = new ArrayList<>(array);
 
 
@@ -273,7 +295,7 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
                     e.printStackTrace();
                 }
             }
-        }
+        }*/
     }
 
 }

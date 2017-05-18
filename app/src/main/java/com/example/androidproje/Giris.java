@@ -4,9 +4,12 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,11 +25,11 @@ import java.util.List;
  * Created by CASPER on 9.05.2017.
  */
 
-public class Giris extends AppCompatActivity {
+public class Giris extends Fragment{
 
 
     private EditText user, pass;
-    private Button bLogin;
+    private Button bGiris;
     // Progress Dialog
      private ProgressDialog pDialog;
     // JSON parser class
@@ -34,27 +37,48 @@ public class Giris extends AppCompatActivity {
     private static final String LOGIN_URL = "http://challangerace.000webhostapp.com/Login.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.giris_layout);
-        user = (EditText)findViewById(R.id.user);
-        pass = (EditText)findViewById(R.id.pass);
-        bLogin = (Button)findViewById(R.id.giris);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.giris_layout, container, false);
+
+        user = (EditText) view.findViewById(R.id.user);
+        pass = (EditText) view.findViewById(R.id.pass);
+        bGiris = (Button) view.findViewById(R.id.giris);
+
+        bGiris.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                String Username = user.getText().toString();
+                String Password = pass.getText().toString();
+
+                new AttemptLogin().execute(Username,Password);
+            }
+        });
+
+
+
+        return view;
 
     }
 
-    public void Giris1(View v) {
+   /* public void Giris1(View v) {
 
             String Username = user.getText().toString();
             String Password = pass.getText().toString();
+            Intent intent= new Intent(getActivity(),Score.class);
+            Intent intent2= new Intent(getActivity(),Islem.class);
+            intent.putExtra("username",Username);
+            intent2.putExtra("username",Username);
             new AttemptLogin().execute(Username,Password);
             // here we have used, switch case, because on login activity you may
             // also want to show registration button, so if the user is new ! we can go the
             // registration activity , other than this we could also do this without switch
             // case.
 
-         }
+         }*/
 
     class AttemptLogin extends AsyncTask<String, String, String> {
         /** * Before starting background thread Show Progress Dialog * */
@@ -63,7 +87,7 @@ public class Giris extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(Giris.this);
+            pDialog = new ProgressDialog(getActivity());
             pDialog.setMessage("Attempting for login...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
@@ -93,18 +117,19 @@ public class Giris extends AppCompatActivity {
                 if (success == true) {
                     Log.d("Successfully Login!", json.toString());
                     //       Toast.makeText(getApplication(),"success",Toast.LENGTH_LONG).show();
-                    Intent ii = new Intent(getApplicationContext(), MainActivity.class);
-                    finish();
+                    Intent ii = new Intent(getActivity(), MainActivity.class);
+                    ii.putExtra("username",username);
+                    getActivity().finish();
                     // this finish() method is used to tell android os that we are done with current
                     // activity now! Moving to other activity
                     startActivity(ii);
                     return json.getString(TAG_MESSAGE);
                 }else {
-                    Toast.makeText(getApplicationContext(),"Kullanıcı adı ya da şifre yanlış",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"Kullanıcı adı ya da şifre yanlış",Toast.LENGTH_LONG).show();
                     return json.getString(TAG_MESSAGE);
                 }
             }catch (Exception e){
-                Toast.makeText(getApplicationContext(),"Connection failed",Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),"Connection failed",Toast.LENGTH_LONG).show();
                e.printStackTrace();
             }
             return null;
@@ -113,7 +138,7 @@ public class Giris extends AppCompatActivity {
         protected void onPostExecute(String message) {
             pDialog.dismiss();
             if (message != null){
-                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
             }
         }
     }

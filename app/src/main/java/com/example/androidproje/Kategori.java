@@ -24,6 +24,8 @@ public class Kategori extends Activity {
     {
         if(v.getId()==R.id.islemBtn){
             Intent intent=new Intent(getApplicationContext(), Islem.class);
+            String username=this.getIntent().getExtras().getString("username");
+            intent.putExtra("username",username);
             startActivity(intent);
 
         }
