@@ -2,7 +2,6 @@ package com.example.androidproje;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -37,25 +36,21 @@ public class SaveTest extends Islem {
         for (int i = 0; i <array.size(); i++) {
 
             String sorup = array.get(i);
-            String cevapp = (String) test.get(sorup);
+            String cevapp = test.get(sorup);
             new TestKaydet().execute(sorup,cevapp,username);
         }
     }
 
-    private final String TEST_URL = "http://challangerace.000webhostapp.com/Test.php";
+
 
 
     class TestKaydet extends AsyncTask<String, String, String> {
-        /**
-         * Before starting background thread Show Progress Dialog *
-         */
 
-
-
+        String TEST_URL;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
+         TEST_URL = "http://challangerace.000webhostapp.com/Test.php";
         }
 
         @Override
@@ -66,17 +61,18 @@ public class SaveTest extends Islem {
             String sorupp = args[0];
             String cevappp= args[1];
             String username = args[2];
+            String cozuldumu="no";
 
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            List<NameValuePair> data = new ArrayList<>();
 
 
-                params.add(new BasicNameValuePair("soru", sorupp));
-                params.add(new BasicNameValuePair("cevap", cevappp));
-                params.add(new BasicNameValuePair("testnumber",username));
-                params.add(new BasicNameValuePair("cozuldumu","no"));
+            data.add(new BasicNameValuePair("soru", sorupp));
+            data.add(new BasicNameValuePair("cevap", cevappp));
+            data.add(new BasicNameValuePair("cozuldumu",cozuldumu));
+            data.add(new BasicNameValuePair("username",username));
 
-                try {
-                    JSONObject json = jsonParser.makeHttpRequest(TEST_URL, "POST", params);
+            try {
+                    JSONObject json = jsonParser.makeHttpRequest(TEST_URL, "POST", data);
                     success = json.getBoolean("success");
 
                 } catch (Exception e) {
@@ -91,7 +87,6 @@ public class SaveTest extends Islem {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-               Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
 
 
         }

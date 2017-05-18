@@ -34,7 +34,7 @@ public class Giris extends Fragment{
      private ProgressDialog pDialog;
     // JSON parser class
     JSONParser jsonParser = new JSONParser();
-    private static final String LOGIN_URL = "http://challangerace.000webhostapp.com/Login.php";
+
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
     @Nullable
@@ -83,10 +83,11 @@ public class Giris extends Fragment{
     class AttemptLogin extends AsyncTask<String, String, String> {
         /** * Before starting background thread Show Progress Dialog * */
         boolean failure = false;
-
+        String LOGIN_URL;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            LOGIN_URL = "http://challangerace.000webhostapp.com/Login.php";
             pDialog = new ProgressDialog(getActivity());
             pDialog.setMessage("Attempting for login...");
             pDialog.setIndeterminate(false);
