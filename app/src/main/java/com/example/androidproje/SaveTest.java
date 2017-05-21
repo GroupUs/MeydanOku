@@ -14,16 +14,18 @@ import java.util.List;
 /**
  * Created by Asus on 18.05.2017.
  */
-public class SaveTest extends Islem {
+public class SaveTest{
 
     HashMap<String, String> test;
     String username;
+    String rivalPlayer;
     private ProgressDialog pDialog;
     JSONParser jsonParser = new JSONParser();
 
     public SaveTest(HashMap test, String username) {
         this.test = test;
         this.username=username;
+
     }
 
 
@@ -37,14 +39,12 @@ public class SaveTest extends Islem {
 
             String sorup = array.get(i);
             String cevapp = test.get(sorup);
-            new TestKaydet().execute(sorup,cevapp,username);
+            new TestKaydet().execute(sorup, cevapp, username);
+            }
         }
-    }
 
 
-
-
-    class TestKaydet extends AsyncTask<String, String, String> {
+        class TestKaydet extends AsyncTask<String, String, String> {
 
         String TEST_URL;
         @Override
@@ -70,6 +70,7 @@ public class SaveTest extends Islem {
             data.add(new BasicNameValuePair("cevap", cevappp));
             data.add(new BasicNameValuePair("cozuldumu",cozuldumu));
             data.add(new BasicNameValuePair("username",username));
+
 
             try {
                     JSONObject json = jsonParser.makeHttpRequest(TEST_URL, "POST", data);

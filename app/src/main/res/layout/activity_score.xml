@@ -9,4 +9,52 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.androidproje.Score">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Senin Skorun"
+        android:id="@+id/seninskor"
+        android:layout_marginTop="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/Skor2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Onun skoru"
+        android:id="@+id/onunskoru"
+        android:layout_marginTop="67dp"
+        android:layout_below="@+id/seninskor"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/Skor2"
+        android:layout_below="@+id/onunskoru"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="72dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/skor1"
+        android:layout_marginEnd="50dp"
+        android:layout_alignBottom="@+id/seninskor"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
+        android:id="@+id/textView6"
+        android:layout_above="@+id/Skor2"
+        android:layout_alignStart="@+id/skor1" />
 </RelativeLayout>

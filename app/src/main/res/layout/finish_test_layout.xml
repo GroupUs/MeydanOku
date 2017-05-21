@@ -12,4 +12,11 @@
         android:layout_centerHorizontal="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_centerVertical="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Skor"
+        android:id="@+id/button_Skor"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>

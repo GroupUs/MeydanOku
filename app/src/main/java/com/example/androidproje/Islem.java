@@ -1,6 +1,7 @@
 package com.example.androidproje;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -9,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,9 +20,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,6 +43,7 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
     TextView question, point, time,finish;
     ListView listItems;
     LinearLayout finish_test_layout;
+    Button skor;
 
     private Animation mBounceAnimation;
 
@@ -51,12 +56,14 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
     ArrayList<String> definitions;
     ArrayList<String> array;
 
+
     private int count=0;
     private float totalPoint=0;
     private String currentWord = "";
     private int score=0;
 
     String getUsername="";
+    String getRivalPlayer;
     private HashMap<String ,String>Test;
 
 
@@ -74,6 +81,8 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
         formList = new HashMap<>();
         Test= new HashMap<>();
 
+
+        getUsername=this.getIntent().getExtras().getString("username");
         setQuestions();
 
 
@@ -84,7 +93,7 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
 
 
         //definitions = new ArrayList<>();
-        getUsername=this.getIntent().getExtras().getString("username");
+
         Test();
 
 
@@ -106,15 +115,31 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
             public void onFinish() {
                 time.setVisibility(View.INVISIBLE);
 
-                SaveTest saveTest= new SaveTest(Test,getUsername);
-                saveTest.Kaydet();
-
+                if(getRivalPlayer==getUsername) {
+                    SaveTest saveTest = new SaveTest(Test, getUsername);
+                    saveTest.Kaydet();
+                }else{
+                    DeleteTest deleteTest= new DeleteTest((getRivalPlayer));
+                    deleteTest.Delete();
+                }
                 finish_test_layout =(LinearLayout) findViewById(R.id.finish_test_layout);
                 setContentView(R.layout.finish_test_layout);
+
                 mBounceAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.bounce_animation);
                 finish=(TextView)findViewById(R.id.finish);
+                skor=(Button)findViewById(R.id.button_Skor);
                 finish.setText("Oyun Bitti");
                 finish.startAnimation(mBounceAnimation);
+                skor.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent inte = new Intent(getApplicationContext(),Score.class);
+                        inte.putExtra("rivalplayer",getRivalPlayer);
+                        inte.putExtra("dogrusayisi",score);
+                        startActivity(inte);
+                    }
+                });
+
              //   Intent inten= new Intent(getApplicationContext(),Score.class);
              //   inten.putExtra("score",score);
 
@@ -150,12 +175,18 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
          * Before starting background thread Show Progress Dialog *
          */
         String json_url;
+        String json_url_secondtest;
+        JSONObject veritest;
+        JSONObject name;
+        JSONArray m_jArry;
         //  boolean failure = false;
 
         @Override
         protected void onPreExecute() {
 
             json_url = "http://challangerace.000webhostapp.com/islem3.php";
+            json_url_secondtest = "http://challangerace.000webhostapp.com/islem2.php";
+
         }
 
         @Override
@@ -163,54 +194,107 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
             // here Check for success tag int success;
             try {
 
-                URL url = new URL(json_url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                InputStream inputStram = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader((new InputStreamReader(inputStram)));
-                StringBuilder stringBuilder = new StringBuilder();
-                while ((JSON_STRING = bufferedReader.readLine()) != null) {
+               URL url1 = new URL(json_url_secondtest);
+                HttpURLConnection httpURLConnection1 = (HttpURLConnection) url1.openConnection();
+                InputStream inputStram1 = httpURLConnection1.getInputStream();
+                BufferedReader bufferedReader1 = new BufferedReader((new InputStreamReader(inputStram1)));
+                StringBuilder stringBuilder1 = new StringBuilder();
+                while ((JSON_STRING = bufferedReader1.readLine()) != null) {
 
-                    stringBuilder.append(JSON_STRING + "\n");
+                    stringBuilder1.append(JSON_STRING + "\n");
 
                 }
-
-                bufferedReader.close();
-                inputStram.close();
-                httpURLConnection.disconnect();
-                String result = stringBuilder.toString().trim();
                 try {
-                    JSONObject obj = new JSONObject(result);
-                    JSONArray m_jArry = obj.getJSONArray("result");
-                    HashMap<String, String> m_li = new HashMap<>();
-
-                    for (int i = 0; i < m_jArry.length(); i++) {
-                        JSONObject jo_inside = m_jArry.getJSONObject(i);
-
-                        String soruString = jo_inside.getString("soru");
-                        String cevapString = jo_inside.getString("cevap");
-                        formList.put(soruString, cevapString);
-                    }
-                } catch (JSONException e) {
+                    bufferedReader1.close();
+                    inputStram1.close();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
-                return stringBuilder.toString().trim();
+
+                httpURLConnection1.disconnect();
+                String result1 = stringBuilder1.toString().trim();
+
+                    JSONObject obj1 = new JSONObject(result1);
+                    m_jArry = obj1.getJSONArray("result");
+                    HashMap<String, String> m_li1 = new HashMap<>();
+
+                    veritest = m_jArry.getJSONObject(m_jArry.length()-1);
 
 
-            } catch (Exception e) {
-                return "something wrong";
+                    if (veritest.getBoolean("emptytable") == false) {
+                        name=m_jArry.getJSONObject(m_jArry.length()-2);
+                        for (int i = 0; i < m_jArry.length()-2; i++) {
+                            JSONObject jo_inside = m_jArry.getJSONObject(i);
+
+                            String soruString = jo_inside.getString("soru");
+                            String cevapString = jo_inside.getString("cevap");
+
+
+                            formList.put(soruString, cevapString);
+                        }
+                        getRivalPlayer=name.getString("username");
+                        return stringBuilder1.toString().trim();
+
+
+                    } else {
+                        try {
+
+                            URL url = new URL(json_url);
+                            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                            InputStream inputStram = httpURLConnection.getInputStream();
+                            BufferedReader bufferedReader = new BufferedReader((new InputStreamReader(inputStram)));
+                            StringBuilder stringBuilder = new StringBuilder();
+                            while ((JSON_STRING = bufferedReader.readLine()) != null) {
+
+                                stringBuilder.append(JSON_STRING + "\n");
+
+                            }
+
+                            bufferedReader.close();
+                            inputStram.close();
+                            httpURLConnection.disconnect();
+                            String result = stringBuilder.toString().trim();
+                            try {
+                                JSONObject obj = new JSONObject(result);
+                                JSONArray m_jArry = obj.getJSONArray("result");
+                                HashMap<String, String> m_li = new HashMap<>();
+
+                                for (int i = 0; i < m_jArry.length(); i++) {
+                                    JSONObject jo_inside = m_jArry.getJSONObject(i);
+
+                                    String soruString = jo_inside.getString("soru");
+                                    String cevapString = jo_inside.getString("cevap");
+                                    formList.put(soruString, cevapString);
+                                }
+                                getRivalPlayer=getUsername;
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            return stringBuilder.toString().trim();
+
+
+                        } catch (Exception e) {
+                            return "something wrong";
+                        }
+                  }
+
+            }catch(MalformedURLException e){
+                e.printStackTrace();
+            }catch(IOException e){
+                e.printStackTrace();
+            }catch(JSONException e){
+                e.printStackTrace();
             }
+            return null;
+        }
+                @Override
+                protected void onPostExecute (String result){
+                    super.onPostExecute(result);
+
+                }
 
         }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-        }
-
-
-    }
-    private void generateRandom() {
+            private void generateRandom() {
 
         //shuffle array pick one
         Collections.shuffle(items);
