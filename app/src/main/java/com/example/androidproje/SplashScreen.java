@@ -12,36 +12,43 @@ import android.widget.ImageView;
  */
 public class SplashScreen extends AppCompatActivity {
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_splashscreen);
-            final ImageView iv=(ImageView) findViewById(R.id.imageView1);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splashscreen);
 
-            final Animation an= AnimationUtils.loadAnimation(getBaseContext(), R.anim.rotate);
-           final Animation an2= AnimationUtils.loadAnimation(getBaseContext(),R.anim.abc_fade_out);
-            // final Animation an3= AnimationUtils.loadAnimation(getBaseContext(),R.anim.slide_up);
-            iv.startAnimation(an);
-            an.setAnimationListener(new Animation.AnimationListener() {
+        final ImageView iv=(ImageView) findViewById(R.id.imageView2);
+        final ImageView iv2=(ImageView) findViewById(R.id.imageView3);
+        final ImageView iv3=(ImageView) findViewById(R.id.imageView);
+        final ImageView iv4=(ImageView) findViewById(R.id.imageView4);
+
+        final Animation an= AnimationUtils.loadAnimation(getBaseContext(), R.anim.rotate1);
+        final Animation an2= AnimationUtils.loadAnimation(getBaseContext(),R.anim.abc_fade_out);
+        // final Animation an3= AnimationUtils.loadAnimation(getBaseContext(),R.anim.slide_up);
+        iv.startAnimation(an);
+        iv2.startAnimation(an);
+        iv3.startAnimation(an);
+        iv4.startAnimation(an);
+        an.setAnimationListener(new Animation.AnimationListener() {
 
 
-                @Override
-                public void onAnimationStart(Animation animation) {
+            @Override
+            public void onAnimationStart(Animation animation) {
 
-                }
+            }
 
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    iv.startAnimation(an2);
-                    finish();
-                    Intent i = new Intent(getBaseContext(), Login.class);
-                    startActivity(i);
+            @Override
+            public void onAnimationEnd(Animation animation) {
 
-                }
+                finish();
+                Intent i = new Intent(getBaseContext(), Login.class);
+                startActivity(i);
 
-                @Override
-                public void onAnimationRepeat(Animation animation) {
+            }
 
-                }
-            });
-        }}
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+    }}

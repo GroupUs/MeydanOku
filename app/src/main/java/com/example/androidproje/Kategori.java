@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -17,6 +18,7 @@ public class Kategori extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.kategori_layout);
        oyunmodu= (TextView)findViewById(R.id.kategoritext1);
+        final ImageView iv=(ImageView) findViewById(R.id.imageView5);
 
 
     }

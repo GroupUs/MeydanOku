@@ -1,39 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<LinearLayout
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView
-        android:id="@+id/tv_question"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_marginTop="32dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:gravity="center"
-        android:textSize="30dp"
-        android:text="SORU"
-        android:textColor="@color/colorQuestion"/>
-    <ListView
-        android:id="@+id/list_item"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
-    </ListView>
-    <TextView
-        android:id="@+id/Point"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:textSize="30dp"
-        android:text=""
-        android:layout_gravity="center_horizontal"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
-
-    <TextView
-        android:id="@+id/time"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:textSize="30dp" android:text=""
-        android:layout_gravity="center_horizontal"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+<LinearLayout android:background="#ffffff" xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+    <TextView android:id="@+id/tv_question" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/colorQuestion" android:text="SORU" android:textSize="30dp" android:gravity="center" android:layout_alignParentTop="true" android:layout_alignParentStart="true" android:layout_marginTop="32dp"/>
+    <TextView android:id="@+id/dogru" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#48bc2e" android:text="DOĞRU" android:textSize="30dp" android:textStyle="bold" android:visibility="invisible" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_gravity="center_horizontal"/>
+    <TextView android:id="@+id/yanlis" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#c52323" android:text="YANLIŞ" android:textSize="30dp" android:textStyle="bold" android:visibility="invisible" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_gravity="center_horizontal|center_vertical"/>
+    <ListView android:id="@+id/list_item" android:layout_width="wrap_content" android:layout_height="wrap_content"> </ListView>
+    <TextView android:id="@+id/Point" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" android:textSize="30dp" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_gravity="center_horizontal"/>
+    <TextView android:id="@+id/time" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" android:textSize="30dp" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_gravity="center_horizontal"/>
 </LinearLayout>

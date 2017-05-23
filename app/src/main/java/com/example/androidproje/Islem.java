@@ -75,6 +75,7 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
         time=(TextView)findViewById(R.id.time);
 
         listItems = (ListView) findViewById(R.id.list_item);
+        listItems.setDivider(null);
         listItems.setAdapter(adapter);
         listItems.setOnItemClickListener(this);
 
@@ -135,7 +136,10 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
                     public void onClick(View v) {
                         Intent inte = new Intent(getApplicationContext(),Score.class);
                         inte.putExtra("rivalplayer",getRivalPlayer);
-                        inte.putExtra("dogrusayisi",score);
+                        inte.putExtra("username",getUsername);
+                        String Sscore=Integer.toString(score);
+                        inte.putExtra("dogrusayisi",Sscore);
+
                         startActivity(inte);
                     }
                 });
@@ -194,7 +198,7 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
             // here Check for success tag int success;
             try {
 
-               URL url1 = new URL(json_url_secondtest);
+                URL url1 = new URL(json_url_secondtest);
                 HttpURLConnection httpURLConnection1 = (HttpURLConnection) url1.openConnection();
                 InputStream inputStram1 = httpURLConnection1.getInputStream();
                 BufferedReader bufferedReader1 = new BufferedReader((new InputStreamReader(inputStram1)));
@@ -222,7 +226,9 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
 
 
                     if (veritest.getBoolean("emptytable") == false) {
+
                         name=m_jArry.getJSONObject(m_jArry.length()-2);
+
                         for (int i = 0; i < m_jArry.length()-2; i++) {
                             JSONObject jo_inside = m_jArry.getJSONObject(i);
 
@@ -345,14 +351,50 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
         count++;
 
         if (formList.get(currentWord).equals(listItems.getItemAtPosition(index).toString())) {
+            final Animation an2= AnimationUtils.loadAnimation(getBaseContext(), R.anim.abc_fade_out);
+            final Animation an3= AnimationUtils.loadAnimation(getBaseContext(),R.anim.bounce_animation);
+            final TextView iv1=(TextView) findViewById(R.id.dogru);
+            iv1.startAnimation(an3);
+            an3.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    iv1.startAnimation(an2);
+                    iv1.setVisibility(View.VISIBLE);
+                    iv1.setVisibility(View.INVISIBLE);
+                    generateRandom();
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                }
+            });
             score++;
-          /*  point.setTextColor(Color.GREEN);
-            point.setText("+1");
-            point.animate().translationX(400).withLayer();*/
-
-            //totalPoint=totalPoint+1;
-
         } else {
+            final Animation an2= AnimationUtils.loadAnimation(getBaseContext(), R.anim.abc_fade_out);
+            final Animation an3= AnimationUtils.loadAnimation(getBaseContext(),R.anim.bounce_animation);
+            final TextView iv1=(TextView) findViewById(R.id.yanlis);
+            iv1.startAnimation(an3);
+            an3.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    iv1.startAnimation(an2);
+                    iv1.setVisibility(View.VISIBLE);
+                    iv1.setVisibility(View.INVISIBLE);
+                    generateRandom();
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                }
+            });
         /*    totalPoint = (float) (totalPoint-0.5);
             point.setTextColor(Color.RED);
             point.setText("-0.5");

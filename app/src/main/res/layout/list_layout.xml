@@ -1,18 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/star"/>
-    <TextView
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="data"/>
-
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout android:weightSum="1" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="horizontal" xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:id="@+id/content" android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_gravity="center_horizontal" android:layout_weight="0.94" android:divider="@null" android:textColor="#b3487c" android:background="@drawable/oval_background" android:text="data" android:layout_marginTop="5dp" android:gravity="center" android:textSize="30dp"/>
 </LinearLayout>

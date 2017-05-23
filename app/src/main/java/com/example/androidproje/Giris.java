@@ -1,6 +1,7 @@
 package com.example.androidproje;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -27,7 +28,7 @@ import java.util.List;
 
 public class Giris extends Fragment{
 
-
+    private Context mContext;
     private EditText user, pass;
     private Button bGiris;
     // Progress Dialog
@@ -37,6 +38,7 @@ public class Giris extends Fragment{
 
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
+    private static final String TAG="error";
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -130,16 +132,17 @@ public class Giris extends Fragment{
                     return json.getString(TAG_MESSAGE);
                 }
             }catch (Exception e){
-                Toast.makeText(getActivity(),"Connection failed",Toast.LENGTH_LONG).show();
-               e.printStackTrace();
+             //   Toast.makeText(getActivity(),"Connection failed",Toast.LENGTH_LONG).show();
+              // e.printStackTrace();
+                return "Connection failed";
             }
-            return null;
+
         }
         /** * Once the background process is done we need to Dismiss the progress dialog asap * **/
         protected void onPostExecute(String message) {
             pDialog.dismiss();
             if (message != null){
-                Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+              //  Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
             }
         }
     }
