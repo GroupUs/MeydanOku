@@ -14,6 +14,7 @@ public class MainActivity extends Activity {
 
 
     private String username;
+    ImageView iv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,14 +22,14 @@ public class MainActivity extends Activity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
         username=this.getIntent().getExtras().getString("username");
-
+          iv = (ImageView) findViewById(R.id.imageView);
 
         }
 
 public void YeniOyun(View v)
 {
     if(v.getId()==R.id.yenioyunbtn){
-        final ImageView iv = (ImageView) findViewById(R.id.imageView);
+
 
         ViewPropertyAnimator anim = iv.animate();
 

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +21,31 @@ public class Kategori extends Activity {
         setContentView(R.layout.kategori_layout);
        oyunmodu= (TextView)findViewById(R.id.kategoritext1);
         final ImageView iv=(ImageView) findViewById(R.id.imageView5);
+
+        final Animation an= AnimationUtils.loadAnimation(getBaseContext(), R.anim.rotate);
+        iv.startAnimation(an);
+
+        an.setAnimationListener(new Animation.AnimationListener() {
+
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
 
 
     }
