@@ -1,8 +1,10 @@
 package com.example.androidproje;
 
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.apache.http.HttpResponse;
@@ -30,8 +32,9 @@ public class Score extends AppCompatActivity {
 
     String durum=null;
     TextView userscore, rivalscore ,sonuc;
-
+    ImageView img,img2,img1;
     String user,rivalplayer,UsersDogruSayisi;
+    TextView userdurum,rivaldurum;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +44,22 @@ public class Score extends AppCompatActivity {
         rivalscore=(TextView)findViewById(R.id.Skor2);
         sonuc=(TextView)findViewById(R.id.sonucDurum);
 
+        userdurum=(TextView)findViewById(R.id.seninskor);
+        rivaldurum=(TextView)findViewById(R.id.onunskoru);
+
+        img=(ImageView)findViewById(R.id.img);
+        img1=(ImageView)findViewById(R.id.img1);
+        img2=(ImageView)findViewById(R.id.img2);
+
         user=getIntent().getExtras().getString("username");
         rivalplayer=getIntent().getExtras().getString("rivalplayer");
         UsersDogruSayisi=getIntent().getExtras().getString("dogrusayisi");
 
+        Typeface face= Typeface.createFromAsset(getAssets(), "JustBreatheBdObl7.otf");
+
+        userdurum.setTypeface(face);
+        rivaldurum.setTypeface(face);
+        sonuc.setTypeface(face);
 
         Kaydet();
 
@@ -57,9 +72,15 @@ public class Score extends AppCompatActivity {
 
         if(durum ==null) {
             rivalscore.setText(score_rival);
-            if (scoreUser > scoreRival) {
+            if (scoreUser >scoreRival) {
                 sonuc.setText("Kazandın!!");
-            } else {
+                img.setImageResource(R.drawable.image6);
+            } else  if(scoreUser==scoreRival) {
+                img1.setImageResource(R.drawable.image1);
+                img2.setImageResource(R.drawable.image2);
+                sonuc.setText("Berabere");
+            }else{
+                img.setImageResource(R.drawable.sadimage1);
                 sonuc.setText("Kaybettin :(");
             }
         }else{

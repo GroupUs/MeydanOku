@@ -7,32 +7,51 @@
     android:background="@drawable/bordershadow"
     tools:context="com.example.androidproje.Score">
 
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:gravity="bottom"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:layout_gravity="top|bottom">
+        android:layout_gravity="top|bottom"
+        android:layout_weight="1">
 
     <TextView
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Senin Skorun"
-        android:id="@+id/seninskor"
-        />
-
+        android:layout_margin="15dp"
+        android:textSize="25dp"
+        android:textStyle="bold|normal"
+        android:textColor="@color/seninSkorun"
+        android:id="@+id/seninskor" />
 
         <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text=""
-            android:id="@+id/skor1"
-          />
+            android:layout_margin="15dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Onun skoru"
+            android:textStyle="bold|normal"
+            android:textSize="25dp"
+            android:textColor="@color/onunSkoru"
+            android:id="@+id/onunskoru"
+             />
     </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,44 +59,69 @@
         android:gravity="bottom"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:orientation="horizontal">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Onun skoru"
-        android:id="@+id/onunskoru"
-        />
+        android:textSize="25dp"
+        android:orientation="vertical"
+        android:layout_weight="2">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text=""
+        android:layout_margin="15dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:textSize="25dp"
+        android:id="@+id/skor1"
+        />
+
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:layout_margin="15dp"
+        android:textSize="25dp"
         android:id="@+id/Skor2"
          />
 
     </LinearLayout>
 
+</LinearLayout>
 
     <TextView
+        fontPath="JustBreatheObl3.otf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="67dp"
+        android:layout_gravity="center"
         android:id="@+id/sonucDurum" />
 
-    <Button
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button2"
-        android:layout_gravity="center_horizontal" />
+        android:layout_margin="@dimen/appbar_padding_top"
+        android:layout_gravity="center"
+        android:id="@+id/img"
+        />
+ <LinearLayout
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:orientation="horizontal">
 
-    <Button
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/appbar_padding_top"
+    android:id="@+id/img1"
+  />
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
-        android:layout_gravity="center_horizontal" />
+        android:layout_margin="@dimen/appbar_padding_top"
+        android:id="@+id/img2"
+        />
+
+</LinearLayout>
 </LinearLayout>

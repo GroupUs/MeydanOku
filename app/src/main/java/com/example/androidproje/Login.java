@@ -1,11 +1,14 @@
 package com.example.androidproje;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by CASPER on 9.05.2017.
@@ -14,10 +17,12 @@ public class Login extends AppCompatActivity {
     private SectionPageAdapter mSectionPageAdapter;
     private ViewPager mViewPager;
 
+
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
+
 
         //  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //   setSupportActionBar(toolbar);
@@ -47,9 +52,16 @@ public class Login extends AppCompatActivity {
         }
     }
 */
+ @Override
+ protected void attachBaseContext(Context newBase) {
+
+     super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+ }
+
+
  private void setupViewPager(ViewPager viewPager){
      SectionPageAdapter adapter = new SectionPageAdapter(getSupportFragmentManager());
-     adapter.addFragment(new Giris(),"GirişYap");
+     adapter.addFragment(new Giris(),"Giriş Yap");
      adapter.addFragment(new Kayit(),"Kayıt Ol");
      viewPager.setAdapter(adapter);
 

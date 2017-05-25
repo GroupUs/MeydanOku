@@ -10,5 +10,9 @@
     <color name="girisbtn">#FFF</color>
     <color name="girisbtn_pressed">#F4511E</color>
     <color name="girisbtn_textColor">#FF5722</color>
+    <color name="seninSkorun">#004D40</color>
+    <color name="onunSkoru">#004D40</color>
+    <color name="kaybettin">#FF6E40</color>
+    <color name="kazandın">#CDDC39</color>
 
 </resources>

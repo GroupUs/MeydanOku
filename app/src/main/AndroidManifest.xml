@@ -35,5 +35,4 @@
         <activity android:name=".Score" />
         <activity android:name=".Score2"></activity>
     </application>
-
 </manifest>

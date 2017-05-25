@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <RelativeLayout
     android:background="#CD9a3870"
-
     android:focusableInTouchMode="false"
     tools:context="com.example.androidproje.MainActivity"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -30,6 +29,7 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"/>
     <Button
+        fontPath="JustBreatheObl3.otf"
         android:id="@+id/yenioyunbtn"
         android:background="#FF9800"
         android:layout_height="wrap_content"
@@ -42,6 +42,7 @@
         android:gravity="center"
         android:text="YENI OYUN"/>
     <Button
+        fontPath="JustBreatheObl3.otf"
         android:id="@+id/skorbtn"
         android:background="#a3a3a3"
         android:layout_height="wrap_content"

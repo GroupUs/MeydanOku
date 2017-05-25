@@ -3,11 +3,13 @@ package com.example.androidproje;
 import android.animation.Animator;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class MainActivity extends Activity {
@@ -15,14 +17,20 @@ public class MainActivity extends Activity {
 
     private String username;
     ImageView iv;
+    Button btn_yenioyun, btn_skor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         username=this.getIntent().getExtras().getString("username");
-          iv = (ImageView) findViewById(R.id.imageView);
+        iv = (ImageView) findViewById(R.id.imageView);
+        btn_yenioyun=(Button)findViewById(R.id.yenioyunbtn);
+        btn_skor=(Button)findViewById(R.id.skorbtn);
+        Typeface face= Typeface.createFromAsset(getAssets(), "JustBreatheBdObl7.otf");
+        btn_yenioyun.setTypeface(face);
+        btn_skor.setTypeface(face);
 
         }
 

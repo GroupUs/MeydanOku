@@ -3,6 +3,7 @@ package com.example.androidproje;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -36,6 +37,7 @@ public class Giris extends Fragment{
     // JSON parser class
     JSONParser jsonParser = new JSONParser();
 
+
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
     private static final String TAG="error";
@@ -47,6 +49,10 @@ public class Giris extends Fragment{
         user = (EditText) view.findViewById(R.id.user);
         pass = (EditText) view.findViewById(R.id.pass);
         bGiris = (Button) view.findViewById(R.id.giris);
+
+      Typeface face= Typeface.createFromAsset(getActivity().getAssets(), "JustBreatheObl3.otf");
+
+        bGiris.setTypeface(face);
 
         bGiris.setOnClickListener(new View.OnClickListener()
         {
@@ -65,6 +71,8 @@ public class Giris extends Fragment{
         return view;
 
     }
+
+
 
    /* public void Giris1(View v) {
 
@@ -86,6 +94,7 @@ public class Giris extends Fragment{
         /** * Before starting background thread Show Progress Dialog * */
         boolean failure = false;
         String LOGIN_URL;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();

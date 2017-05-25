@@ -2,6 +2,7 @@ package com.example.androidproje;
 
 
 import android.app.ProgressDialog;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -47,6 +48,9 @@ public class Kayit extends Fragment {
         user = (android.widget.EditText)view.findViewById(R.id.username);
         pass = (EditText)view.findViewById(R.id.password);
         bKayit = (Button)view.findViewById(R.id.kayitol);
+        Typeface face= Typeface.createFromAsset(getActivity().getAssets(), "JustBreatheObl3.otf");
+
+        bKayit.setTypeface(face);
 
         bKayit.setOnClickListener(new View.OnClickListener()
         {

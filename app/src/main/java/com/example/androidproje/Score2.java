@@ -1,5 +1,6 @@
 package com.example.androidproje;
 
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,17 +35,23 @@ public class Score2 extends AppCompatActivity {
     String score_userd="0";
     String user,rivalplayer;
     String durum;
+    TextView userdurum,rivaldurum;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
-
+        userdurum=(TextView)findViewById(R.id.seninskor);
+        rivaldurum=(TextView)findViewById(R.id.onunskoru);
 
         userscore=(TextView)findViewById(R.id.skor1);
         rivalscore=(TextView)findViewById(R.id.Skor2);
         sonuc=(TextView)findViewById(R.id.sonucDurum);
+        Typeface face= Typeface.createFromAsset(getAssets(), "JustBreatheBdObl7.otf");
 
+        userdurum.setTypeface(face);
+        rivaldurum.setTypeface(face);
+        sonuc.setTypeface(face);
 
         user=getIntent().getExtras().getString("username");
 

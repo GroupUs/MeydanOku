@@ -1,8 +1,10 @@
 package com.example.androidproje;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -31,6 +33,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by CASPER on 9.05.2017.
@@ -67,6 +71,10 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
     String getRivalPlayer;
     private HashMap<String ,String>Test;
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +91,11 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
         formList = new HashMap<>();
         Test= new HashMap<>();
 
+        Typeface face= Typeface.createFromAsset(getAssets(), "JustBreatheObl3.otf");
 
+        point.setTypeface(face);
+        question.setTypeface(face);
+        time.setTypeface(face);
         getUsername=this.getIntent().getExtras().getString("username");
         setQuestions();
 

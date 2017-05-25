@@ -3,11 +3,57 @@
     android:focusableInTouchMode="false"
     tools:context="com.example.androidproje.Giris"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:paddingTop="@dimen/activity_vertical_margin" android:paddingRight="@dimen/activity_horizontal_margin" android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingBottom="@dimen/activity_vertical_margin" android:layout_height="match_parent" android:layout_width="match_parent" xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <EditText android:id="@+id/username" android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_alignParentStart="true" android:layout_below="@+id/Kullanici_Adi"/>
-    <EditText android:id="@+id/password" android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_alignParentStart="true" android:layout_below="@+id/Sifre"/>
-    <Button android:id="@+id/kayitol" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_below="@+id/password" android:layout_centerHorizontal="true" android:onClick="KayıtOl" android:textSize="40dp" android:text="KAYIT OL"/>
-    <TextView android:id="@+id/Kullanici_Adi" android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_alignParentStart="true" android:text="Kullanıcı Adı" android:layout_marginTop="70dp" android:textAppearance="?android:attr/textAppearanceLarge"/>
-    <TextView android:id="@+id/Sifre" android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_alignParentStart="true" android:layout_below="@+id/username" android:text="Şifre" android:textAppearance="?android:attr/textAppearanceLarge"/>
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingBottom="@dimen/activity_vertical_margin" android:layout_height="match_parent" android:layout_width="match_parent" xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="MissingPrefix">
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/Kullanici_Adi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/Kullanici_Adi"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/Sifre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="11.33"
+        android:layout_marginBottom="38dp">
+
+    <EditText
+
+        android:id="@+id/password"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/Sifre"/>
+    </android.support.design.widget.TextInputLayout>
+    <Button
+        fontPath="JustBreatheObl3.otf"
+        android:id="@+id/kayitol"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:onClick="KayıtOl"
+        android:textSize="25dp"
+        android:textColor="@color/girisbtn_textColor"
+        android:background="@drawable/oval_background"
+        android:text="KAYIT OL"/>
+    </LinearLayout>
+
 </RelativeLayout>
