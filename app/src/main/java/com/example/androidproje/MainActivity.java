@@ -12,21 +12,24 @@ import android.widget.ImageView;
 
 public class MainActivity extends Activity {
 
+
+    private String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
-
+        username=this.getIntent().getExtras().getString("username");
 
 
         }
 
-public void Tiklandi2(View v)
+public void YeniOyun(View v)
 {
     if(v.getId()==R.id.yenioyunbtn){
         final ImageView iv = (ImageView) findViewById(R.id.imageView);
-        final String username=this.getIntent().getExtras().getString("username");
+
         ViewPropertyAnimator anim = iv.animate();
 
         final Animation an= AnimationUtils.loadAnimation(getBaseContext(), R.anim.rotate);
@@ -64,10 +67,11 @@ public void Tiklandi2(View v)
 
     }
 }
-    public void Tiklandi3(View v)
+    public void Skorlar(View v)
     {
         if(v.getId()==R.id.skorbtn){
-            Intent intent=new Intent(getApplicationContext(), Score.class);
+            Intent intent=new Intent(getApplicationContext(), Score2.class);
+            intent.putExtra("username", username);
             startActivity(intent);
 
 

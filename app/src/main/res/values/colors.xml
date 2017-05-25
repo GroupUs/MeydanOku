@@ -2,9 +2,12 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF9800</color>
+    <color name="colorAccent">#FB8C00</color>
     <color name="colorQuestion">#FF9800</color>
     <color name="white">#ffffff</color>
     <color name="giris">#FFF5D28B</color>
     <color name="kayitol">#FFEAB24C</color>
+    <color name="girisbtn">#C0CA33</color>
+    <color name="girisbtn_pressed">#CDDC39</color>
+    <color name="girisbtn_textColor">#F57C00</color>
 </resources>

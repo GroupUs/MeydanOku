@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <RelativeLayout
-    android:background="#9a3870"
+    android:background="#CD9a3870"
+
     android:focusableInTouchMode="false"
     tools:context="com.example.androidproje.MainActivity"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -21,7 +22,35 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/yenioyunbtn"
         android:src="@drawable/image7"/>
-    <ImageView android:id="@+id/imageView2" android:layout_height="200dp" android:layout_width="150dp" android:src="@drawable/image8" android:layout_alignParentEnd="true" android:layout_centerVertical="true"/>
-    <Button android:id="@+id/yenioyunbtn" android:background="#FF9800" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_alignParentStart="true" android:layout_above="@+id/imageView2" android:onClick="Tiklandi2" android:textSize="20dp" android:textColor="#ffffff" android:gravity="center" android:text="YENI OYUN"/>
-    <Button android:id="@+id/skorbtn" android:background="#a3a3a3" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_above="@+id/imageView2" android:onClick="Tiklandi3" android:textSize="20dp" android:textColor="#ffffff" android:gravity="center" android:text="SKORLAR" android:layout_alignStart="@+id/imageView2"/>
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:src="@drawable/image8"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"/>
+    <Button
+        android:id="@+id/yenioyunbtn"
+        android:background="#FF9800"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/imageView2"
+        android:onClick="YeniOyun"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:text="YENI OYUN"/>
+    <Button
+        android:id="@+id/skorbtn"
+        android:background="#a3a3a3"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_above="@+id/imageView2"
+        android:onClick="Skorlar"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:text="SKORLAR"
+        android:layout_alignStart="@+id/imageView2"/>
 </RelativeLayout>

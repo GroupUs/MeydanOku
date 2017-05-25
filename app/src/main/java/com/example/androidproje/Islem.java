@@ -2,6 +2,7 @@ package com.example.androidproje;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -353,7 +354,9 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
         if (formList.get(currentWord).equals(listItems.getItemAtPosition(index).toString())) {
             final Animation an2= AnimationUtils.loadAnimation(getBaseContext(), R.anim.abc_fade_out);
             final Animation an3= AnimationUtils.loadAnimation(getBaseContext(),R.anim.bounce_animation);
-            final TextView iv1=(TextView) findViewById(R.id.dogru);
+            final TextView iv1=(TextView) findViewById(R.id.durum);
+            iv1.setTextColor(Color.parseColor("#48bc2e"));
+            iv1.setText("DOĞRU");
             iv1.startAnimation(an3);
             an3.setAnimationListener(new Animation.AnimationListener() {
                 @Override
@@ -365,7 +368,7 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
                     iv1.startAnimation(an2);
                     iv1.setVisibility(View.VISIBLE);
                     iv1.setVisibility(View.INVISIBLE);
-                    generateRandom();
+
                 }
 
                 @Override
@@ -376,11 +379,14 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
         } else {
             final Animation an2= AnimationUtils.loadAnimation(getBaseContext(), R.anim.abc_fade_out);
             final Animation an3= AnimationUtils.loadAnimation(getBaseContext(),R.anim.bounce_animation);
-            final TextView iv1=(TextView) findViewById(R.id.yanlis);
+            final TextView iv1=(TextView) findViewById(R.id.durum);
+            iv1.setTextColor(Color.parseColor("#c52323"));
+            iv1.setText("YANLIŞ");
             iv1.startAnimation(an3);
             an3.setAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
+
                 }
 
                 @Override
@@ -388,7 +394,7 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
                     iv1.startAnimation(an2);
                     iv1.setVisibility(View.VISIBLE);
                     iv1.setVisibility(View.INVISIBLE);
-                    generateRandom();
+
                 }
 
                 @Override
