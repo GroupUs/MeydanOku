@@ -71,12 +71,12 @@ public class ScoreKelime extends AppCompatActivity {
         sonuc.setTypeface(face);
         anaSayfa.setTypeface(face);
 
-        username.setText(user);
-        rivalname.setText(rivalplayer);
+
 
         Kaydet();
 
-
+        username.setText(user);
+        rivalname.setText(rivalplayer);
 
         int scoreUser=Integer.parseInt(UsersDogruSayisi);
         int scoreRival=Integer.parseInt(score_rival);
@@ -97,6 +97,7 @@ public class ScoreKelime extends AppCompatActivity {
                 sonuc.setText("Kaybettin :(");
             }
         }else{
+            rivalscore.setText(score_rival);
             sonuc.setText(durum.toString());
         }
 

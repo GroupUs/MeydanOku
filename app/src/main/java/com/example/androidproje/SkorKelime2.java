@@ -67,6 +67,7 @@ public class SkorKelime2 extends AppCompatActivity {
         sonuc.setTypeface(face);
 
         user=getIntent().getExtras().getString("username");
+
         getScore();
 
         username.setText(user);
@@ -91,6 +92,7 @@ public class SkorKelime2 extends AppCompatActivity {
                 sonuc.setText("Kaybettin :(");
             }
         }else{
+            rivalscore.setText(score_rivald);
             sonuc.setText(durum.toString());
         }
     }

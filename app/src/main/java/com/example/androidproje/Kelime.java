@@ -86,6 +86,7 @@ public class Kelime extends Activity implements AdapterView.OnItemClickListener{
 
 
         getUsername=this.getIntent().getExtras().getString("username");
+
         setQuestions();
 
 
@@ -136,8 +137,10 @@ public class Kelime extends Activity implements AdapterView.OnItemClickListener{
                 skor=(Button)findViewById(R.id.button_Skor);
                 finish=(TextView)findViewById(R.id.finish);
                 finish=(TextView)findViewById(R.id.finish);
+                skor.setTypeface(face);
+                finish.setTypeface(face);
                 skor=(Button)findViewById(R.id.button_Skor);
-                finish.setText("Oyun Bitti");
+                finish.setText("Oyun Bitti...");
                 finish.startAnimation(mBounceAnimation);
                 skor.setOnClickListener(new View.OnClickListener() {
                     @Override

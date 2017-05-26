@@ -90,7 +90,7 @@ public class Kayit extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(getActivity());
-            pDialog.setMessage("Attempting for register...");
+            pDialog.setMessage("Kayıt Yapılıyo");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();

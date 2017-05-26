@@ -100,7 +100,7 @@ public class Giris extends Fragment{
             super.onPreExecute();
             LOGIN_URL = "http://challangerace.000webhostapp.com/Login.php";
             pDialog = new ProgressDialog(getActivity());
-            pDialog.setMessage("Attempting for login...");
+            pDialog.setMessage("Giriş Yapılıyor...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show(); }
@@ -141,7 +141,7 @@ public class Giris extends Fragment{
                     return json.getString(TAG_MESSAGE);
                 }
             }catch (Exception e){
-             //   Toast.makeText(getActivity(),"Connection failed",Toast.LENGTH_LONG).show();
+
               // e.printStackTrace();
                 return "Connection failed";
             }

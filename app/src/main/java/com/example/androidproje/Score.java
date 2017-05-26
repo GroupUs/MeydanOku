@@ -1,5 +1,6 @@
 package com.example.androidproje;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -32,7 +33,7 @@ public class Score extends AppCompatActivity {
 
     String score_rival="0";
     static String json = "";
-
+    ProgressDialog pDialog;
     String durum=null;
     TextView userscore, rivalscore ,sonuc;
     ImageView img,img2,img1;
@@ -71,10 +72,11 @@ public class Score extends AppCompatActivity {
         sonuc.setTypeface(face);
         anaSayfa.setTypeface(face);
 
-        username.setText(user);
-        rivalname.setText(rivalplayer);
 
         Kaydet();
+
+        username.setText(user);
+        rivalname.setText(rivalplayer);
 
 
 
@@ -97,6 +99,7 @@ public class Score extends AppCompatActivity {
                 sonuc.setText("Kaybettin :(");
             }
         }else{
+            rivalscore.setText(score_rival);
             sonuc.setText(durum.toString());
         }
 
@@ -126,6 +129,11 @@ public void Kaydet(){
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            pDialog = new ProgressDialog(Score.this);
+            pDialog.setMessage("Sonuçlar bekleniyor");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
             SKOR_URL = "http://challangerace.000webhostapp.com/SkorTable.php";
         }
 
@@ -194,6 +202,7 @@ public void Kaydet(){
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+            pDialog.dismiss();
 
 
         }

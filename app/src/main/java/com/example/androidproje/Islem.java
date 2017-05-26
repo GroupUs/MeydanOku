@@ -150,7 +150,7 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
                 finish=(TextView)findViewById(R.id.finish);
                 finish.setTypeface(face);
                 skor.setTypeface(face);
-                finish.setText("Oyun Bitti");
+                finish.setText("Oyun Bitti...");
 
                 finish.startAnimation(mBounceAnimation);
                 skor.setOnClickListener(new View.OnClickListener() {
