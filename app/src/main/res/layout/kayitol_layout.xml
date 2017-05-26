@@ -25,6 +25,7 @@
         android:id="@+id/username"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:hint="Kullanıcı Adı"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/Kullanici_Adi"/>
     </android.support.design.widget.TextInputLayout>
@@ -41,9 +42,11 @@
         android:id="@+id/password"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:hint="Şifre"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/Sifre"/>
     </android.support.design.widget.TextInputLayout>
+
     <Button
         fontPath="JustBreatheObl3.otf"
         android:id="@+id/kayitol"

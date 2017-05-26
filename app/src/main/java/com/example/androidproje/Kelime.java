@@ -3,6 +3,7 @@ package com.example.androidproje;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -121,16 +122,19 @@ public class Kelime extends Activity implements AdapterView.OnItemClickListener{
                     while(Test.size()<=20) {
                         generateRandom2();
                     }
-                    SaveTest saveTest = new SaveTest(Test, getUsername);
-                    saveTest.Kaydet();
+                    SaveKelime saveKelime = new SaveKelime(Test, getUsername);
+                    saveKelime.Kaydet();
                 }else{
-                    DeleteTest deleteTest= new DeleteTest((getRivalPlayer));
-                    deleteTest.Delete();
+                    DeleteKelime deleteKelime= new DeleteKelime((getRivalPlayer));
+                    deleteKelime.Delete();
                 }
                 finish_test_layout =(RelativeLayout) findViewById(R.id.finish_test_layout);
                 setContentView(R.layout.finish_test_layout);
 
                 mBounceAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.bounce_animation);
+                Typeface face= Typeface.createFromAsset(getAssets(), "JustBreatheBdObl7.otf");
+                skor=(Button)findViewById(R.id.button_Skor);
+                finish=(TextView)findViewById(R.id.finish);
                 finish=(TextView)findViewById(R.id.finish);
                 skor=(Button)findViewById(R.id.button_Skor);
                 finish.setText("Oyun Bitti");
@@ -138,7 +142,7 @@ public class Kelime extends Activity implements AdapterView.OnItemClickListener{
                 skor.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent inte = new Intent(getApplicationContext(),Score.class);
+                        Intent inte = new Intent(getApplicationContext(),Score2.class);
                         inte.putExtra("rivalplayer",getRivalPlayer);
                         inte.putExtra("username",getUsername);
                         String Sscore=Integer.toString(score);

@@ -156,6 +156,7 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
                 skor.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         Intent inte = new Intent(getApplicationContext(),Score.class);
                         inte.putExtra("rivalplayer",getRivalPlayer);
                         inte.putExtra("username",getUsername);
@@ -461,33 +462,10 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
                 public void onAnimationRepeat(Animation animation) {
                 }
             });
-        /*    totalPoint = (float) (totalPoint-0.5);
-            point.setTextColor(Color.RED);
-            point.setText("-0.5");
-            point.animate().translationX(-400).withLayer();*/
         }
 
         generateRandom();
-     /*   if(count==5) {
-            items = new ArrayList<>(array);
 
-
-            if (totalPoint > 0) {
-                try {
-
-                    Toast.makeText(this, "You got it!!", Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else {
-                try {
-
-                    Toast.makeText(this, "Study more!!", Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }*/
     }
 
 }
