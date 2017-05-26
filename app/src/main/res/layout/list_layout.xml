@@ -13,7 +13,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.94"
         android:divider="@null"
-        android:textColor="#b3487c"
+        android:textColor="#8a8383"
         android:background="@drawable/list_background"
         android:text="data"
         android:layout_marginTop="5dp"

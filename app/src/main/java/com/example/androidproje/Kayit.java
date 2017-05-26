@@ -48,7 +48,7 @@ public class Kayit extends Fragment {
         user = (android.widget.EditText)view.findViewById(R.id.username);
         pass = (EditText)view.findViewById(R.id.password);
         bKayit = (Button)view.findViewById(R.id.kayitol);
-        Typeface face= Typeface.createFromAsset(getActivity().getAssets(), "JustBreatheObl3.otf");
+        Typeface face= Typeface.createFromAsset(getActivity().getAssets(), "JustBreatheBdObl7.otf");
 
         bKayit.setTypeface(face);
 

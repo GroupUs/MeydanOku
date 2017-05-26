@@ -1,9 +1,12 @@
 package com.example.androidproje;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.apache.http.HttpResponse;
@@ -33,9 +36,10 @@ public class Score2 extends AppCompatActivity {
     String score_rivald="0";
     String score_rivalname;
     String score_userd="0";
-    String user,rivalplayer;
+    String user;
     String durum;
-    TextView userdurum,rivaldurum;
+    TextView userdurum,rivaldurum,username,rivalname;
+    ImageView img,img2,img1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +51,15 @@ public class Score2 extends AppCompatActivity {
         userscore=(TextView)findViewById(R.id.skor1);
         rivalscore=(TextView)findViewById(R.id.Skor2);
         sonuc=(TextView)findViewById(R.id.sonucDurum);
+
+        username=(TextView)findViewById(R.id.username);
+        rivalname=(TextView)findViewById(R.id.rivalname);
+
+        img=(ImageView)findViewById(R.id.img);
+        img1=(ImageView)findViewById(R.id.img1);
+        img2=(ImageView)findViewById(R.id.img2);
+
+
         Typeface face= Typeface.createFromAsset(getAssets(), "JustBreatheBdObl7.otf");
 
         userdurum.setTypeface(face);
@@ -54,8 +67,11 @@ public class Score2 extends AppCompatActivity {
         sonuc.setTypeface(face);
 
         user=getIntent().getExtras().getString("username");
-
         getScore();
+
+        username.setText(user);
+        rivalname.setText(score_rivalname);
+
 
         int scoreUser=Integer.parseInt(score_userd);
         int scoreRival=Integer.parseInt(score_rivald);
@@ -63,9 +79,15 @@ public class Score2 extends AppCompatActivity {
 
         if(durum ==null) {
             rivalscore.setText(score_rivald);
-            if (scoreUser > scoreRival) {
+            if (scoreUser >scoreRival) {
                 sonuc.setText("Kazandın!!");
-            } else {
+                img.setImageResource(R.drawable.image6);
+            } else  if(scoreUser==scoreRival) {
+                img1.setImageResource(R.drawable.image1);
+                img2.setImageResource(R.drawable.image2);
+                sonuc.setText("Berabere");
+            }else{
+                img.setImageResource(R.drawable.sadimage1);
                 sonuc.setText("Kaybettin :(");
             }
         }else{
@@ -73,7 +95,11 @@ public class Score2 extends AppCompatActivity {
         }
     }
 
-
+    public void Anasayfa(View v){
+        Intent in = new Intent(this,MainActivity.class);
+        in.putExtra("username",user);
+        startActivity(in);
+    }
     public void getScore(){
         try {
             new getSkor().execute(user).get();
@@ -153,7 +179,7 @@ public class Score2 extends AppCompatActivity {
 */
 
                 if (success == true) {
-                    return "Kaydedildi";
+                    return "kaydedildi";
                 } else{
                     durum="Rakip bekleniyor...";
                     return durum;
@@ -161,9 +187,8 @@ public class Score2 extends AppCompatActivity {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                return "something wrong";
             }
-
+return null;
         }
 
         @Override

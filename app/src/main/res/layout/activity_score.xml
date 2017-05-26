@@ -11,26 +11,26 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:weightSum="1">
 
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="bottom"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:layout_gravity="top|bottom"
-        android:layout_weight="1">
+        android:layout_gravity="top|bottom">
 
     <TextView
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Senin Skorun"
+        android:text="Senin Skorun:"
         android:layout_margin="15dp"
         android:textSize="25dp"
         android:textStyle="bold|normal"
@@ -38,12 +38,11 @@
         android:id="@+id/seninskor" />
 
         <TextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Onun skoru"
+            android:text="Onun Skoru:"
             android:textStyle="bold|normal"
             android:textSize="25dp"
             android:textColor="@color/onunSkoru"
@@ -52,51 +51,72 @@
     </LinearLayout>
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="67dp"
+        android:layout_gravity="bottom"
+        android:textColor="#EF6C00"
+        android:textSize="40dp"
+        android:id="@+id/sonucDurum" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="113dp"
         android:layout_height="wrap_content"
         android:gravity="bottom"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:textSize="25dp"
-        android:orientation="vertical"
-        android:layout_weight="2">
+        android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
-        android:layout_margin="15dp"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:textSize="25dp"
-        android:id="@+id/skor1"
-        />
-
-
-    <TextView
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text=""
         android:layout_margin="15dp"
         android:textSize="25dp"
-        android:id="@+id/Skor2"
-         />
+        android:id="@+id/skor1"
+        />
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text=""
+            android:layout_margin="15dp"
+            android:textSize="25dp"
+            android:id="@+id/Skor2"
+            />
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="73dp"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:textSize="25dp"
+            android:orientation="vertical"
+            android:layout_weight="0.86">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_margin="15dp"
+                android:textSize="25dp"
+                android:id="@+id/username"
+                />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_margin="15dp"
+            android:textSize="25dp"
+            android:id="@+id/rivalname"
+            />
 
     </LinearLayout>
-
 </LinearLayout>
-
-    <TextView
-        fontPath="JustBreatheObl3.otf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="67dp"
-        android:layout_gravity="center"
-        android:id="@+id/sonucDurum" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -119,9 +139,20 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/appbar_padding_top"
+        android:layout_margin="5dp"
         android:id="@+id/img2"
         />
+ </LinearLayout>
 
-</LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ana Sayfa"
+        android:id="@+id/button_Anasayfa"
+        android:onClick="Anasayfa"
+        android:textSize="25dp"
+        android:background="@drawable/oval_background"
+        android:textColor="@color/girisbtn_textColor"
+        android:layout_gravity="center_horizontal" />
+
 </LinearLayout>

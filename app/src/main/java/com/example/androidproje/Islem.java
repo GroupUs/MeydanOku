@@ -14,8 +14,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -47,7 +47,7 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
 
     TextView question, point, time,finish;
     ListView listItems;
-    LinearLayout finish_test_layout;
+    RelativeLayout finish_test_layout;
     Button skor;
 
     private Animation mBounceAnimation;
@@ -97,6 +97,8 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
         question.setTypeface(face);
         time.setTypeface(face);
         getUsername=this.getIntent().getExtras().getString("username");
+
+
         setQuestions();
 
 
@@ -130,19 +132,26 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
                 time.setVisibility(View.INVISIBLE);
 
                 if(getRivalPlayer==getUsername) {
+                    while(Test.size()<=20) {
+                            generateRandom2();
+                    }
                     SaveTest saveTest = new SaveTest(Test, getUsername);
                     saveTest.Kaydet();
                 }else{
                     DeleteTest deleteTest= new DeleteTest((getRivalPlayer));
                     deleteTest.Delete();
                 }
-                finish_test_layout =(LinearLayout) findViewById(R.id.finish_test_layout);
+                finish_test_layout =(RelativeLayout) findViewById(R.id.finish_test_layout);
                 setContentView(R.layout.finish_test_layout);
 
                 mBounceAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.bounce_animation);
-                finish=(TextView)findViewById(R.id.finish);
+                Typeface face= Typeface.createFromAsset(getAssets(), "JustBreatheBdObl7.otf");
                 skor=(Button)findViewById(R.id.button_Skor);
+                finish=(TextView)findViewById(R.id.finish);
+                finish.setTypeface(face);
+                skor.setTypeface(face);
                 finish.setText("Oyun Bitti");
+
                 finish.startAnimation(mBounceAnimation);
                 skor.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -313,7 +322,46 @@ public class Islem extends Activity implements AdapterView.OnItemClickListener{
                 }
 
         }
-            private void generateRandom() {
+
+
+   private void generateRandom2(){
+       //shuffle array pick one
+       Collections.shuffle(items);
+       String word = items.get(0);
+
+       question.setText(word);
+       currentWord = word;
+
+       definitions.clear();
+
+       int number = -1;
+
+       for (int x = 0; x < array.size(); x++) {
+           if (items.get(0).equals(array.get(x))) {
+               number = x;
+               break;
+           }
+       }
+       definitions.add(formList.get(word));
+
+       Test.put(word,formList.get(word));
+
+       for (int i = 0; i < MULTIPLE_CHOICE_COUNT - 1; i++) {
+           if (number == i) {
+               definitions.add(formList.get(array.get(5)));
+           } else {
+               definitions.add(formList.get(array.get(i)));
+           }
+       }
+       Collections.shuffle(definitions);
+
+       Test.put(word,formList.get(word));
+
+       items.remove(word);
+
+   }
+
+    private void generateRandom() {
 
         //shuffle array pick one
         Collections.shuffle(items);

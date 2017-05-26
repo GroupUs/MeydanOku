@@ -50,7 +50,7 @@ public class Giris extends Fragment{
         pass = (EditText) view.findViewById(R.id.pass);
         bGiris = (Button) view.findViewById(R.id.giris);
 
-      Typeface face= Typeface.createFromAsset(getActivity().getAssets(), "JustBreatheObl3.otf");
+      Typeface face= Typeface.createFromAsset(getActivity().getAssets(), "JustBreatheBdObl7.otf");
 
         bGiris.setTypeface(face);
 

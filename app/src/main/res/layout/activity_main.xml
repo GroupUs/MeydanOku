@@ -29,9 +29,9 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"/>
     <Button
-        fontPath="JustBreatheObl3.otf"
+
         android:id="@+id/yenioyunbtn"
-        android:background="#FF9800"
+        android:background="@drawable/yenioyun_background"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_alignParentStart="true"
@@ -42,9 +42,9 @@
         android:gravity="center"
         android:text="YENI OYUN"/>
     <Button
-        fontPath="JustBreatheObl3.otf"
+
         android:id="@+id/skorbtn"
-        android:background="#a3a3a3"
+        android:background="@drawable/scor_background"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_above="@+id/imageView2"
@@ -54,4 +54,14 @@
         android:gravity="center"
         android:text="SKORLAR"
         android:layout_alignStart="@+id/imageView2"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Çıkış Yap"
+        android:id="@+id/btn_cikis"
+        android:background="@drawable/cikisyap_background"
+        android:onClick="CikisYap"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

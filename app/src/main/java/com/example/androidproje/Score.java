@@ -1,9 +1,12 @@
 package com.example.androidproje;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,7 +37,9 @@ public class Score extends AppCompatActivity {
     TextView userscore, rivalscore ,sonuc;
     ImageView img,img2,img1;
     String user,rivalplayer,UsersDogruSayisi;
-    TextView userdurum,rivaldurum;
+    TextView userdurum,rivaldurum,username,rivalname;
+    Button anaSayfa;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +48,8 @@ public class Score extends AppCompatActivity {
         userscore=(TextView)findViewById(R.id.skor1);
         rivalscore=(TextView)findViewById(R.id.Skor2);
         sonuc=(TextView)findViewById(R.id.sonucDurum);
+        username=(TextView)findViewById(R.id.username);
+        rivalname=(TextView)findViewById(R.id.rivalname);
 
         userdurum=(TextView)findViewById(R.id.seninskor);
         rivaldurum=(TextView)findViewById(R.id.onunskoru);
@@ -50,6 +57,8 @@ public class Score extends AppCompatActivity {
         img=(ImageView)findViewById(R.id.img);
         img1=(ImageView)findViewById(R.id.img1);
         img2=(ImageView)findViewById(R.id.img2);
+
+        anaSayfa=(Button)findViewById(R.id.button_Anasayfa);
 
         user=getIntent().getExtras().getString("username");
         rivalplayer=getIntent().getExtras().getString("rivalplayer");
@@ -60,6 +69,10 @@ public class Score extends AppCompatActivity {
         userdurum.setTypeface(face);
         rivaldurum.setTypeface(face);
         sonuc.setTypeface(face);
+        anaSayfa.setTypeface(face);
+
+        username.setText(user);
+        rivalname.setText(rivalplayer);
 
         Kaydet();
 
@@ -87,6 +100,11 @@ public class Score extends AppCompatActivity {
             sonuc.setText(durum.toString());
         }
 
+    }
+    public void Anasayfa(View v){
+        Intent in = new Intent(this,MainActivity.class);
+        in.putExtra("username",user);
+        startActivity(in);
     }
 
 public void Kaydet(){

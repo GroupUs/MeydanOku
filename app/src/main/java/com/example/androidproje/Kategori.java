@@ -69,6 +69,8 @@ public class Kategori extends Activity {
     {
         if(v.getId()==R.id.kelimeBtn){
             Intent intent=new Intent(getApplicationContext(), Kelime.class);
+            String username=this.getIntent().getExtras().getString("username");
+            intent.putExtra("username",username);
             startActivity(intent);
 
         }

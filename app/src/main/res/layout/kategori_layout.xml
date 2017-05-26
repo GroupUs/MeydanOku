@@ -1,7 +1,58 @@
 <?xml version="1.0"?>
-<RelativeLayout android:background="#eee0e5" android:focusableInTouchMode="false" tools:context="com.example.quizapp.MainActivity" app:layout_behavior="@string/appbar_scrolling_view_behavior" android:paddingTop="@dimen/activity_vertical_margin" android:paddingRight="@dimen/activity_horizontal_margin" android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingBottom="@dimen/activity_vertical_margin" android:layout_height="match_parent" android:layout_width="match_parent" xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
-    <Button android:id="@+id/islemBtn" android:background="#c56d96" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_toStartOf="@+id/imageView5" android:layout_alignTop="@+id/kelimeBtn" android:onClick="Islem1" android:textSize="20dp" android:textColor="#ffffff" android:text="İŞLEM"/>
-    <ImageView android:id="@+id/imageView5" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_alignStart="@+id/kategoritext1" android:layout_below="@+id/islemBtn" android:src="@drawable/yenimage1"/>
-    <Button android:id="@+id/kelimeBtn" android:background="#c56d96" android:layout_height="wrap_content" android:layout_width="wrap_content" android:onClick="Kelime1" android:textSize="20dp" android:textColor="#ffffff" android:text="KELİME" android:layout_below="@+id/kategoritext1" android:layout_toEndOf="@+id/kategoritext1" android:layout_marginTop="52dp" android:gravity="center"/>
-    <TextView android:id="@+id/kategoritext1" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Oyun Kategorisi" android:layout_marginTop="70dp" android:layout_centerHorizontal="true" android:layout_alignParentTop="true" android:textAppearance="?android:attr/textAppearanceLarge"/>
+<RelativeLayout
+    android:background="#eee0e5"
+    android:focusableInTouchMode="false"
+    tools:context="com.example.androidproje.Kategori"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <Button
+        android:id="@+id/islemBtn"
+        android:background="@drawable/islem_background"
+        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_toStartOf="@+id/imageView5"
+        android:layout_alignTop="@+id/kelimeBtn"
+        android:onClick="Islem1"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:text="İŞLEM"
+        />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignStart="@+id/kategoritext1"
+        android:layout_below="@+id/islemBtn"
+        android:src="@drawable/yenimage1"/>
+
+    <Button android:id="@+id/kelimeBtn"
+        android:background="@drawable/kelime_background"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:onClick="Kelime1"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:text="KELİME"
+        android:layout_below="@+id/kategoritext1"
+        android:layout_toEndOf="@+id/kategoritext1"
+        android:layout_marginTop="52dp"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/kategoritext1"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Oyun Kategorisi"
+        android:layout_marginTop="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
 </RelativeLayout>
